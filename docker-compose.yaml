@@ -23,12 +23,12 @@ services:
         tail -f /dev/null
       "
 
-  node:
+  worker:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.node
-    hostname: node1
-    container_name: node1
+    hostname: node
+    container_name: cloudian_node
     platform: linux/amd64
     cap_add:
       - SYS_ADMIN
