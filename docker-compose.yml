@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  configuration-master:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.master
+      platform: linux/amd64
+    image: configuration-master:amd64
+    hostname: configuration-master
+    container_name: configuration-master
+    platform: linux/amd64
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    volumes:
+      - lvvl_my_files:/myfiles
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.10
+    stdin_open: true
+    tty: true
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    command: /usr/sbin/sshd -D
+
+  node1:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.node
+      platform: linux/amd64
+    image: node1:amd64
+    hostname: node1
+    container_name: node1
+    platform: linux/amd64
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.11
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    command: /usr/sbin/sshd -D
+
+  node2:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.node
+      platform: linux/amd64
+    image: node2:amd64
+    hostname: node2
+    container_name: node2
+    platform: linux/amd64
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.12
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    command: /usr/sbin/sshd -D
+
+  node3:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.node
+      platform: linux/amd64
+    image: node3:amd64
+    hostname: node3
+    container_name: node3
+    platform: linux/amd64
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.13
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    command: /usr/sbin/sshd -D
+
+networks:
+  cluster-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  lvvl_my_files:
+    external: true
