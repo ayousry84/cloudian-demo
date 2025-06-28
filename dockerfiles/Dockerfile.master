@@ -1,0 +1,27 @@
+FROM --platform=linux/amd64 rockylinux:8
+
+# Install packages
+RUN dnf -y update && \
+    dnf -y install openssh-server openssh-clients sudo vim curl && \
+    dnf clean all
+
+# Enable SSH and set root password
+RUN ssh-keygen -A && \
+    echo 'root:password123' | chpasswd && \
+    echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
+    echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
+
+# Generate master SSH key pair
+RUN mkdir -p /root/.ssh && \
+    ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N ''
+
+# Add startup scripts
+COPY inject_keys.sh /usr/local/bin/inject_keys.sh
+COPY startup.sh /usr/local/bin/startup.sh
+RUN chmod +x /usr/local/bin/*.sh
+
+# Expose SSH port
+EXPOSE 22
+
+# Start container
+CMD ["/usr/local/bin/startup.sh"]
