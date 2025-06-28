@@ -28,7 +28,6 @@ services:
       context: ./dockerfiles
       dockerfile: Dockerfile.node
     hostname: node
-    container_name: cloudian_node
     platform: linux/amd64
     cap_add:
       - SYS_ADMIN
