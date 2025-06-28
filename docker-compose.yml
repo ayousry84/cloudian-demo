@@ -14,7 +14,7 @@ services:
       - SYS_ADMIN
       - NET_ADMIN
     volumes:
-      - lvvl_my_files:/myfiles
+      - myfiles:/myfiles
     networks:
       cluster-network:
         ipv4_address: 172.20.0.10
@@ -93,5 +93,5 @@ networks:
         - subnet: 172.20.0.0/16
 
 volumes:
-  lvvl_my_files:
+  myfiles:
     external: true
