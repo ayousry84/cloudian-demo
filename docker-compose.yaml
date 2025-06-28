@@ -14,7 +14,7 @@ services:
     volumes:
       - lvvl_my_files:/myfiles
     networks:
-      - cluster-network
+      - cluster-network2
     stdin_open: true
     tty: true
     command: |
@@ -34,7 +34,7 @@ services:
       - SYS_ADMIN
       - NET_ADMIN
     networks:
-      - cluster-network
+      - cluster-network2
     stdin_open: true
     tty: true
     command: |
@@ -54,7 +54,7 @@ services:
       - SYS_ADMIN
       - NET_ADMIN
     networks:
-      - cluster-network
+      - cluster-network2
     stdin_open: true
     tty: true
     command: |
@@ -74,7 +74,7 @@ services:
       - SYS_ADMIN
       - NET_ADMIN
     networks:
-      - cluster-network
+      - cluster-network2
     stdin_open: true
     tty: true
     command: |
@@ -84,7 +84,7 @@ services:
       "
 
 networks:
-  cluster-network:
+  cluster-network2:
     driver: bridge
     ipam:
       config:
