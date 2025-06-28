@@ -23,7 +23,7 @@ services:
         tail -f /dev/null
       "
 
-  node1:
+  node:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.node
@@ -37,52 +37,13 @@ services:
       - cluster-network2
     stdin_open: true
     tty: true
+    deploy:
+      replicas: 3
     command: |
       bash -c "
         /usr/sbin/sshd -D &
         tail -f /dev/null
       "
-
-  node2:
-    build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile.node
-    hostname: node2
-    container_name: node2
-    platform: linux/amd64
-    cap_add:
-      - SYS_ADMIN
-      - NET_ADMIN
-    networks:
-      - cluster-network2
-    stdin_open: true
-    tty: true
-    command: |
-      bash -c "
-        /usr/sbin/sshd -D &
-        tail -f /dev/null
-      "
-
-  node3:
-    build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile.node
-    hostname: node3
-    container_name: node3
-    platform: linux/amd64
-    cap_add:
-      - SYS_ADMIN
-      - NET_ADMIN
-    networks:
-      - cluster-network2
-    stdin_open: true
-    tty: true
-    command: |
-      bash -c "
-        /usr/sbin/sshd -D &
-        tail -f /dev/null
-      "
-
 networks:
   cluster-network2:
     driver: bridge
