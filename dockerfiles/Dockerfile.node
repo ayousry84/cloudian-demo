@@ -1,4 +1,4 @@
-FROM rockylinux:8
+FROM --platform=linux/amd64 rockylinux:8
 
 # Update system and install SSH server
 RUN dnf update -y && \
