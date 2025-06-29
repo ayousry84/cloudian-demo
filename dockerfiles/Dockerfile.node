@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 rockylinux:8
+FROM --platform=linux/amd64 lvvl-cloudian-node-v1.0:latest
 
 # Install packages
 RUN dnf -y update && \
