@@ -6,7 +6,7 @@ services:
       context: ./dockerfiles
       dockerfile: Dockerfile.master
       platform: linux/amd64
-    image: configuration-master:amd64
+    image: lvvl-cloudian-v1.0:latest
     hostname: configuration-master
     container_name: configuration-master
     platform: linux/amd64
@@ -14,7 +14,7 @@ services:
       - SYS_ADMIN
       - NET_ADMIN
     volumes:
-      - myfiles:/myfiles
+      - lvvl_my_files:/myfiles
     networks:
       cluster-network:
         ipv4_address: 172.20.0.10
@@ -93,5 +93,5 @@ networks:
         - subnet: 172.20.0.0/16
 
 volumes:
-  myfiles:
+  lvvl_my_files:
     external: true
