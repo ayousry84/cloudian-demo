@@ -5,7 +5,6 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.master
-      platform: linux/amd64
     image: lvvl-cloudian-v1.0:latest
     hostname: configuration-master
     container_name: configuration-master
@@ -29,7 +28,6 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.node
-      platform: linux/amd64
     image: node1:amd64
     hostname: node1
     container_name: node1
@@ -49,7 +47,6 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.node
-      platform: linux/amd64
     image: node2:amd64
     hostname: node2
     container_name: node2
@@ -69,7 +66,6 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.node
-      platform: linux/amd64
     image: node3:amd64
     hostname: node3
     container_name: node3
