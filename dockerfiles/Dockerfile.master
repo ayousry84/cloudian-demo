@@ -1,15 +1,18 @@
 FROM --platform=linux/amd64 lvvl-cloudian-v1.0:latest
+
 # Install packages
 RUN dnf -y update && \
     dnf -y install openssh-server openssh-clients sudo vim curl && \
     dnf clean all
+
+# Source profile files
+RUN source /etc/profile && source ~/.bash_profile
 
 # Enable SSH and set root password
 RUN ssh-keygen -A && \
     echo 'root:password123' | chpasswd && \
     echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
     echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
-
 
 # Add startup scripts
 COPY inject_keys.sh /usr/local/bin/inject_keys.sh
