@@ -5,7 +5,7 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile.master
-    image: lvvl-cloudian-v1.0:latest
+    image: configuration-master:latest
     hostname: configuration-master
     container_name: configuration-master
     platform: linux/amd64
