@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo '[ -f /etc/profile ] && source /etc/profile' >> ~/.bashrc
-echo '[ -f ~/.bash_profile ] && source ~/.bash_profile' >> ~/.bashrc
+sudo echo '[ -f /etc/profile ] && sudo source /etc/profile' >> ~/.bashrc
+sudo echo '[ -f ~/.bash_profile ] && sudo source ~/.bash_profile' >> ~/.bashrc
 
 /usr/local/bin/inject_keys.sh
 
