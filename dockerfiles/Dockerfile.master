@@ -5,8 +5,9 @@ RUN dnf -y update && \
     dnf -y install openssh-server openssh-clients sudo vim curl && \
     dnf clean all
 
-# Source profile files
-RUN source /etc/profile && source ~/.bash_profile
+# Add source commands to .bashrc
+RUN echo 'source /etc/profile' >> ~/.bashrc && \
+    echo 'source ~/.bash_profile' >> ~/.bashrc
 
 # Enable SSH and set root password
 RUN ssh-keygen -A && \
